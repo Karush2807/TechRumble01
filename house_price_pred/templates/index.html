@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            color: #007BFF;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>House Price Prediction</h1>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="area">Area:</label>
+                <input type="text" id="area" name="area" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="stories">Stories:</label>
+                <input type="text" id="stories" name="stories" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="bathrooms">Bathrooms:</label>
+                <input type="text" id="bathrooms" name="bathrooms" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="airconditioning">Airconditioning:</label>
+                <input type="text" id="airconditioning" name="airconditioning" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="parking">Parking:</label>
+                <input type="text" id="parking" name="parking" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="bedrooms">Bedrooms:</label>
+                <input type="text" id="bedrooms" name="bedrooms" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="guestroom">Guestroom:</label>
+                <input type="text" id="guestroom" name="guestroom" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="mainroad">Mainroad:</label>
+                <input type="text" id="mainroad" name="mainroad" required>
+            </div>
+            
+            <button type="submit">Predict</button>
+        </form>
+        
+        {% if prediction_text %}
+            <h2>{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>

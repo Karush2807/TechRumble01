@@ -5,7 +5,7 @@ import numpy as np
 app = Flask(__name__, template_folder='templates')
 
 # Load the machine learning model
-model = pickle.load(open('modeel.pkl', 'rb'))
+model = pickle.load(open('ran_reg_model.pkl', 'rb'))
 
 @app.route('/', methods=['GET'])
 def home():
@@ -32,6 +32,7 @@ def predict():
             parking = int(request.form.get('parking', 0))
             prefarea = convert_input(request.form.get('prefarea'))
             furnishingstatus = request.form.get('furnishingstatus', '').lower()
+            
 
             # Handle furnishingstatus as categorical
             furnishingstatus_encoded = 0

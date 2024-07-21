@@ -42,8 +42,39 @@ y = dataset['price']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Scaling
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+from sklearn.preprocessing import StandardScaler
+std_sc=StandardScaler()
+x_train_final=std_sc.fit_transform(x_train)
+x_test_final=std_sc.transform(x_test)
+```
+## Random Forest Regressor
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestRegressor
+
+#performing hyperparameter tuning 
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+grid_search=GridSearchCV(estimator=RandomForestRegressor(random_state=42), param_grid=param_grid, cv=3, n_jobs=-1, verbose=2)
+grid_search.fit(x_train, y_train)
 ```
 
+## Linear Regresion Model
+```python
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_percentage_error,mean_absolute_error, mean_squared_error
+lin_reg=LinearRegression()
+lin_reg.fit(x_train_final,y_train)
+prediction_of_lr=lin_reg.predict(x_test_final)
+mean_absolute_percentage_error(y_test,prediction_of_lr)
+mean_squared_error(y_test, prediction_of_lr)
+
+# Save model
+with open('linear_regression_model.pkl', 'wb') as f:
+    pickle.dump(lin_reg, f)
+```

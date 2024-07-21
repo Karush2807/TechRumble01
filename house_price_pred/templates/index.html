@@ -2,70 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Price Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f4f4f4;
             margin: 0;
+            padding: 0;
         }
-
         .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            text-align: center;
         }
-
         h1 {
-            color: #333333;
-            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
+        form {
+            display: flex;
+            flex-direction: column;
         }
-
         label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555555;
+            margin-top: 10px;
+            color: #333;
         }
-
-        input[type="text"] {
-            width: 100%;
+        input[type="text"], select {
             padding: 10px;
-            border: 1px solid #dddddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 16px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
-
-        button {
-            background-color: #007BFF;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        h2 {
-            color: #007BFF;
+        input[type="submit"] {
             margin-top: 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            text-align: center;
         }
     </style>
 </head>
@@ -73,52 +63,54 @@
     <div class="container">
         <h1>House Price Prediction</h1>
         <form action="/predict" method="post">
-            <div class="form-group">
-                <label for="area">Area:</label>
-                <input type="text" id="area" name="area" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="stories">Stories:</label>
-                <input type="text" id="stories" name="stories" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="bathrooms">Bathrooms:</label>
-                <input type="text" id="bathrooms" name="bathrooms" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="airconditioning">Airconditioning:</label>
-                <input type="text" id="airconditioning" name="airconditioning" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="parking">Parking:</label>
-                <input type="text" id="parking" name="parking" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="bedrooms">Bedrooms:</label>
-                <input type="text" id="bedrooms" name="bedrooms" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="guestroom">Guestroom:</label>
-                <input type="text" id="guestroom" name="guestroom" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="mainroad">Mainroad:</label>
-                <input type="text" id="mainroad" name="mainroad" required>
-            </div>
-            
-            <button type="submit">Predict</button>
+            <label for="area">Area (in sqft):</label>
+            <input type="text" id="area" name="area" required>
+
+            <label for="bedrooms">Number of Bedrooms:</label>
+            <input type="text" id="bedrooms" name="bedrooms" required>
+
+            <label for="bathrooms">Number of Bathrooms:</label>
+            <input type="text" id="bathrooms" name="bathrooms" required>
+
+            <label for="stories">Number of Stories:</label>
+            <input type="text" id="stories" name="stories" required>
+
+            <label for="mainroad">Main Road Access (yes/no):</label>
+            <input type="text" id="mainroad" name="mainroad" required>
+
+            <label for="guestroom">Guest Room (yes/no):</label>
+            <input type="text" id="guestroom" name="guestroom" required>
+
+            <label for="basement">Basement (yes/no):</label>
+            <input type="text" id="basement" name="basement" required>
+
+            <label for="hotwaterheating">Hot Water Heating (yes/no):</label>
+            <input type="text" id="hotwaterheating" name="hotwaterheating" required>
+
+            <label for="airconditioning">Air Conditioning (yes/no):</label>
+            <input type="text" id="airconditioning" name="airconditioning" required>
+
+            <label for="parking">Number of Parking Spaces:</label>
+            <input type="text" id="parking" name="parking" required>
+
+            <label for="prefarea">Preferred Area (yes/no):</label>
+            <input type="text" id="prefarea" name="prefarea" required>
+
+            <label for="furnishingstatus">Furnishing Status:</label>
+            <select id="furnishingstatus" name="furnishingstatus" required>
+                <option value="unfurnished">Unfurnished</option>
+                <option value="semi-furnished">Semi-Furnished</option>
+                <option value="furnished">Furnished</option>
+            </select>
+
+            <input type="submit" value="Predict">
         </form>
-        
-        {% if prediction_text %}
-            <h2>{{ prediction_text }}</h2>
+        {% if result %}
+        <div class="result">{{ result }}</div>
         {% endif %}
+
+        <h2>THE FWI prediction is {{result}}</h2>
+
     </div>
 </body>
 </html>
